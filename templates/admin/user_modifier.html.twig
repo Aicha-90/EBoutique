@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2 class="h2 text-center mt-3 mb-5">Modification du user</h2>
+
+<div class="d-flex justify-content-center">
+    <form class="col-md-6 text-center" method="post">
+        <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" id="pseudo" name="pseudo" value="{{ userAmodif is defined ? userAmodif.pseudo : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" value="{{ userAmodif is defined ? userAmodif.nom : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prenom</label>
+            <input type="text" class="form-control" id="prenom" name="prenom" value="{{ userAmodif is defined ? userAmodif.prenom : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="roles">Roles</label>
+            <span>{{ userAmodif is defined ? userAmodif.roles[0] : "" }}</span>
+            <select name="roles">
+                    <option value="ROLE_ADMIN">Admin</option>
+                    <option value="ROLE_USER">User</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ userAmodif is defined ? userAmodif.email : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="adresse">Adresse</label>
+            <input type="text" class="form-control" id="adresse" name="adresse" value="{{ userAmodif is defined ? userAmodif.adresse : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="cp">Code Postal</label>
+            <input type="number" class="form-control" id="cp" name="cp" value="{{ userAmodif is defined ? userAmodif.cp : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="ville">Ville</label>
+            <input type="text" class="form-control" id="ville" name="ville" value="{{ userAmodif is defined ? userAmodif.ville : "" }}">
+        </div>
+        <button type="submit" name="submit" class="btn btn-dark">Modifier</button>
+    </form>
+</div>
+
+{% endblock %}

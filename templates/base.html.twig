@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Sport{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        {{ encore_entry_link_tags("app") }}
+        <link href="https://fonts.googleapis.com/css?family=Crimson+Text&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500&family=Comfortaa&family=Lobster&family=Nunito:wght@600&family=Staatliches&family=Varela+Round&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet"> 
+    </head>
+    <body>
+        <div id="contenu">
+            <header>
+                <div id="headG">
+                    <section id="logo">
+                        <img src="/img/logo.png" alt="logo">
+                    </section>
+                    <section id="slogan">
+                        <p>Le sport de tous les niveaux</p>
+                    </section>
+                </div>
+                <div id="headD">
+                    <section id="conPanier">
+                        <p><img src="/img/icon-mon-panier.png" alt="panier"><a href="{{ path("panier") }}">Mon panier</a></p>
+                    <!-- Si pas connecté -->
+                    {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                        <p><img src="/img/icon-mon-compte.png" alt="mon_compte"><a href="{{ path("app_login") }}">Se connecter </a> / <a href="{{ path("user_subs") }}">Inscription</a></p>
+                    {% endif %}
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                        <p><img src="/img/icon-mon-compte.png" alt="mon_compte"><a href="{{ path("app_logout") }}">Se deconnecter</a> / <a href="{{ path("user_mon_compte") }}">Mon compte</a></p>
+                    {% endif %}    
+                    </section>
+                    <section id="monNom">
+                        {% if app.user %}
+                            <p>{{ app.user.prenom }} {{ app.user.nom }}</p>
+                        {% endif %}
+                    </section>
+                    <nav>
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ path('accueil')}}">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('produit', {'categorie':'homme'} )}}">Homme</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path("produit", {'categorie':'femme'} )}}">Femme</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path("produit", {'categorie':'enfant'} )}}">Enfant</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <main>
+                <section id="imgBoxers">
+                    <img src="/img/header-page-catalogue.png" alt="boxeurs">
+                </section>            
+                <div class="container"> 
+
+                    {% block body %}{% endblock %}
+
+                </div>
+            </main>
+            <footer>
+                <section>
+                    <div id="infoBas">
+                        <a href="">Qui sommes-nous</a><a href="">Contact</a><a href="">Assistance</a><a href="">CGV</a>
+                    </div>
+                </section>
+                <section id="icones">
+                    <div><img src="/img/icon-livre.png" alt=""><p>Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire.</p></div>
+                    <div><img src="/img/icon-camion.png" alt=""><p>Il trouve ses racines dans une oeuvre de la littérature latine classique</p></div>
+                    <div><img src="/img/icon-cadenat.png" alt=""><p>Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire</p></div>
+                    <div><img src="/img/icon-pouce.png" alt=""><p>Il trouve ses racines dans une oeuvre de la littérature latine classique</p></div>
+                </section>
+                <section id="lienSoc">
+                    <div><img src="/img/icon-facebook.png" alt=""></div>
+                    <div><img src="/img/icon-linkedin.png" alt=""></div>
+                    <div><img src="/img/icon-twitter.png" alt=""></div>
+                </section>
+                <p id="copy">&copyright. Tous droits réservés</p>       
+            </footer> 
+        </div>   
+            {% block javascripts %}{{ encore_entry_script_tags("app") }}{% endblock %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </body>
+</html>

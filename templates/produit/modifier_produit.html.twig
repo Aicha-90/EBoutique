@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2 class="h2 text-center mt-3 mb-5">Modification du produit</h2>
+
+<div class="d-flex justify-content-center">
+    <form class="col-md-6 text-center" method="post">
+         <div class="form-group">
+            <label for="photo">Photo</label>
+            <img src="../img/{{ prodAmodif is defined ? prodAmodif.photo : "" }}" alt="photo">
+            <input type="file" class="form-control" id="photo" name="photo">
+        </div>
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text" class="form-control" id="titre" name="titre" value="{{ prodAmodif is defined ? prodAmodif.titre : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="categorie">Categorie</label>
+            <input type="text" class="form-control" id="categorie" name="categorie" value="{{ prodAmodif is defined ? prodAmodif.categorie : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description" value="{{ prodAmodif is defined ? prodAmodif.description : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="couleur">Couleur</label>
+            <span>{{ prodAmodif is defined ? prodAmodif.couleur : "" }}</span>
+            <select name="couleur">
+                    <option value="Noir">Noir</option>
+                    <option value="Blanc">Blanc</option>
+                    <option value="Bleu">Bleu</option>
+                    <option value="Rouge">Rouge</option>
+                    <option value="Vert">Vert</option>
+                    <option value="Jaune">Jaune</option>
+                    <option value="Marron">Marron</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="prix">Prix</label>
+            <input type="number" class="form-control" id="prix" name="prix" value="{{ prodAmodif is defined ? prodAmodif.prix : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" value="{{ prodAmodif is defined ? prodAmodif.stock : "" }}">
+        </div>
+        <div class="form-group">
+            <label for="reference">Reference</label>
+            <input type="number" class="form-control" id="reference" name="reference" value="{{ prodAmodif is defined ? prodAmodif.reference : "" }}">
+        </div>
+        <button type="submit" name="submit" class="btn btn-dark">Modifier</button>
+    </form>
+</div>
+
+{% endblock %}

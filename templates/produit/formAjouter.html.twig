@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="formEx">
+ <div class="form">
+    <h1 class="formIn">Ajouter un Produit</h1>
+
+    {{ form_start(AjouterProduitForm) }}
+        {{ form_row(AjouterProduitForm.titre) }}
+        {{ form_row(AjouterProduitForm.categorie) }}
+        {{ form_row(AjouterProduitForm.sexe) }}
+        
+        {{ form_row(AjouterProduitForm.couleur) }}
+        {{ form_row(AjouterProduitForm.description) }}
+        {{ form_row(AjouterProduitForm.reference) }}
+        {{ form_row(AjouterProduitForm.photo) }}
+        {{ form_row(AjouterProduitForm.prix) }}
+        {{ form_row(AjouterProduitForm.stock) }}
+
+        {{ form_row(AjouterProduitForm.ajouter) }}
+        {{ form_row(AjouterProduitForm._token) }} 
+    {{ form_end(AjouterProduitForm) }}
+    </div>
+</div>
+
+{% endblock %}

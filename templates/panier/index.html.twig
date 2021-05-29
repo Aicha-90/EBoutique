@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<!-- PANIER -->
+
+<div class="panier">
+    <h1>Votre panier</h1>
+    {% if items | length > 0 %}
+      <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Produit</th>
+          <th scope="col">Prix</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Total</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.produit.titre }} <span id="{{ item.produit.id }}"></span></td>
+          <td>{{ item.produit.prix }}</td>
+          <td>
+            <a href="{{ path('panier_ajouter', {'id': item.produit.id}) }}" > + </a>
+              {% if item.quantite <= item.produit.stock %}
+                {{ item.quantite }}
+              {% elseif item.quantite == item.produit.stock %}
+                {{ item.produit.stock }}
+              {% endif %}
+            <a href="{{ path('panier_retirer', {'id': item.produit.id}) }}"> - </a>
+          </td>
+          <td>{{ (item.produit.prix * item.quantite) |number_format(2) }}€</td>
+          <td>
+            <a href="{{ path('panier_supp', {'id': item.produit.id}) }}"><i class='fa fa-trash'></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total :</td>
+            <td id="montant">{{total |number_format(2) }}€</td>
+            <td></td>
+        </tr>
+      </tfoot>
+      </tbody>
+    </table>
+    {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+      <a href="{{ path('app_login') }}" class="lienCommander">Commander</a>
+    {% endif %}
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+      <button type="button" class="commander">Commander</button>
+    {% endif %}
+{% else %}
+    <p>Vide</p>
+{% endif %}
+</div>
+
+<!--MODE DE LIVRAISON -->
+
+<div class="modeLivraison">
+  <h1>Choisissez votre mode de livraison</h1>
+
+  <form method="post" action="">
+      <div>
+        <input type="radio" id="livDom" name="modeLiv" value="livDom" checked>
+        <label for="livDom">Livraison à domicile</label>
+      </div>
+
+      <div>
+        <input type="radio" id="relais" name="modeLiv" value="relais">
+        <label for="relais">Retrait au point relay</label>
+      </div>
+  </form>
+  <div class="adresseLiv">
+      {% if app.user %}
+          <p>Votre adresse de livraison:</p>
+          <p>{{ app.user.adresse }}</p>
+          <p>{{ app.user.cp }}, {{ app.user.ville }}</p>
+      {% endif %}
+  </div>
+
+  <div class="adresseRetrait">
+      {% if app.user %}
+          <p>Votre adresse de livraison:</p>
+          <p>Optique plus</p>
+          <p id="adresse">15 avenue Lenine</p>
+          <p>93120, La Courneuve</p>
+      {% endif %}
+  </div>
+  <button type="button" class="paiement">Paiement</button>
+
+</div>
+
+<div class="paie">
+  <h2>Mode de paiement</h2>
+  <p>Toutes les transactions sont sécurisées et cryptées</p>
+  <p>Vous devez régler la somme de <span class="montantPaie">{{total|number_format(2)}} €</span></p>
+  
+  <div class="modePaie">
+    <img src="/img/img221.png" atl="logo paiements">
+  </div>
+  
+  <form method="POST">
+    <div class="input-group input-group-sm mb-3">
+      <input type="text" name="titulaire" placeholder="Nom du titulaire" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"><label>
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+      <input type="text" name="numeros" placeholder="Numéros de la carte" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"><label>
+        <i class="fas fa-credit-card"></i></label>
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+      <input type="text" name="expiration" placeholder="MM/AA" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      <input name="cvv" placeholder="CVV" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      <label>
+        <i class="fas fa-question-circle"></i>
+      </label>
+    </div>
+    
+  </form>
+</div>
+
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+  <div class="validerPanier">
+    <a href="{{ path('commande_paiement', {id:app.user.id, montant:total}) }}">Valider</a>
+  </div>
+{% endif %}
+{% endblock %}

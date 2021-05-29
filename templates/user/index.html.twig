@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="formEx">
+    <div class="form">
+        <h1 class="formIn">Créer ton compte !</h1>
+
+        {{ form_start(UserSubs) }}
+            
+            {{ form_row(UserSubs.nom) }}
+            {{ form_row(UserSubs.prenom) }}
+            {{ form_row(UserSubs.pseudo) }}
+            {{ form_row(UserSubs.email) }}
+            {{ form_row(UserSubs.password) }}
+            {{ form_row(UserSubs.sexe) }}
+            {{ form_row(UserSubs.ville) }}
+            {{ form_row(UserSubs.cp) }}
+            {{ form_row(UserSubs.adresse) }}  
+
+            <button class="btn btn-lg btn-primary">Inscription</button>
+            {{ form_row(UserSubs._token) }}    
+        {{ form_end(UserSubs) }}
+
+    </div>
+</div>
+{% endblock %}

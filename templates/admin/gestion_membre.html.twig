@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Role</th>
+        <th scope="col">Email</th>
+        <th scope="col">Sexe</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Code Postal</th>
+        <th scope="col">Ville</th>
+        <th scope="col" colspan="2">Modification</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in listUser %}
+        <tr>
+        <th scope="row">{{user.pseudo}}</th>
+        <td>{{user.nom}}</td>
+        <td>{{user.prenom}}</td>
+        <td>{{user.roles|join(", ")}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.sexe}}</td>
+        <td>{{user.adresse}}</td>
+        <td>{{user.cp}}</td>
+        <td>{{user.ville}}</td>
+        <td><a href="{{ path("user_supp", {id: user.id}) }}" class="supp" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?')" ><i class='fa fa-trash'></i></a></td>
+        <td><a href="{{ path("user_modifier", {id: user.id}) }}"><i class='fa fa-pen'></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

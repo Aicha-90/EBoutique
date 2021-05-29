@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="mesInfos">
+    
+        <form class="col-md-6 text-center" method="POST">
+            <h3>Mes informations personnelles</h3>
+            <div class="form-group">
+                <label for="psdo">Pseudo</label>
+                <input type="text" class="form-control" id="psdo" name="psdo" value="{{ mesInfos is defined ? mesInfos.pseudo}}">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nom</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" value="{{ mesInfos is defined ? mesInfos.nom }}">
+            </div>
+            <div class="form-group">
+                <label for="firstName">Prenom</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" value="{{ mesInfos is defined ? mesInfos.prenom }}">
+            </div>
+            <div class="form-group">
+                <label for="mail">Email</label>
+                <input type="text" class="form-control" id="mail" name="mail" value="{{ mesInfos is defined ? mesInfos.email }}">
+            </div>
+            <div class="form-group">
+                <label for="sxe">Genre</label>
+                <span>{{ mesInfos is defined ? mesInfos.sexe }}</span>
+                <select name="sxe">
+                    <option value="f">f</option>
+                    <option value="m">m</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="city">Ville</label>
+                <input type="text" class="form-control" id="city" name="city" value="{{ mesInfos is defined ? mesInfos.ville }}">
+            </div>
+            <div class="form-group">
+                <label for="codep">Code Postale</label>
+                <input type="text" class="form-control" id="codep" name="codep" value="{{ mesInfos is defined ? mesInfos.cp }}">
+            </div>
+            <div class="form-group">
+                <label for="ad">Adresse</label>
+                <input type="text" class="form-control" id="ad" name="ad" value="{{ mesInfos is defined ? mesInfos.adresse }}">
+            </div>
+            <button type="submit" name="submit" class="btn btn-dark">Modifier</button>
+        </form>
+        <a href="{{ path("user_supp", {id: app.user.id}) }}" class="btn btn-dark" onclick="return confirm('Etes vous sûre de vouloir supprimer votre compte')">Supprimer mon Compte</a>
+</div>
+
+{% endblock %}

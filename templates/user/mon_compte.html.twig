@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="monCompte">
+    {% if is_granted("ROLE_ADMIN") %}
+    <div class="mcAdmin">
+        <h1>ADMIN</h1>
+        <div class="btn-group-vertical">
+            <a href="{{ path("produit_gestion") }}"   class="btn btn-primary">Gestion des produits</a>
+            <a href="{{ path("produit_add") }}"  class="btn btn-primary">Ajouter des produits</a>
+            <a href="{{ path("user_gestion") }}"  class="btn btn-primary">Gestion des membres</a>
+            <a href="{{ path("commande_gestion") }}"  class="btn btn-primary">Gestion des commandes</a>
+        </div>
+    </div> 
+    {% else %}  
+    <div class="mcUser">
+        <h1>USER</h1>
+        <div class="btn-group-vertical">
+            <a href="{{ path("commande_user", {id: app.user.id}) }}"  class="btn btn-primary">Mes Commandes</a>
+            <a href="{{ path("user_modifier_infos", {id: app.user.id}) }}" class="btn btn-dark">Modifier mes informations</a>
+        </div>
+        <div class="mesInfos">
+            <h3>Mes informations personnelles</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Pseudo: {{ app.user.pseudo}}</li>
+                <li class="list-group-item">Nom: {{ app.user.nom }}</li>
+                <li class="list-group-item">Prenom: {{ app.user.prenom }}</li>
+                <li class="list-group-item">Email: {{ app.user.email }}</li>
+                <li class="list-group-item">Genre: {{ app.user.sexe }}</li>
+                <li class="list-group-item">Adresse: {{ app.user.adresse }}, {{ app.user.cp }} {{ app.user.ville }}</li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</div>
+           
+{% endblock %}

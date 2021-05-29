@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">Date</th>
+          <th scope="col">Etat</th>
+          <th scope="col">Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for cmd in listeCmd %}
+        <tr>
+            <td>{{cmd.user.pseudo}}</td>
+            <td>{{cmd.date|date("d/m/Y")}}</td>
+            <td>{{cmd.etat}}</td>   
+            <td>{{cmd.montant}}</td>   
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+
+{% endblock %}
