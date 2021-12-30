@@ -4,7 +4,7 @@
         {% for produit in listeProduit %}
         <div class="col-sm">
             <div class="card" style="width: 18rem;">
-                <img src="../img/{{ produit.photo }}" class="card-img-top" alt="produit">
+                <img src="../img/{{ produit.photo }}" class="card-img-top" alt="produit" height="200" width="200">
                 <div class="card-body">
                     <h5 class="card-title">{{ produit.titre }}</h5>
                     <p class="card-text"><span class="price">{{ produit.prix }} €</span></p>

@@ -1,0 +1,10 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Oooups ! </h1>
+    <p>Une erreur s'est produite pendant la connexion au serveur</p>
+    <p>Code {{status_code}} {{status_text}}</p>
+    <p><a href="{{path('accueil')}}">Retour vers la page d'accueil</a></p>
+{% endblock %}

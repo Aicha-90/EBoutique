@@ -91,40 +91,40 @@
   <button type="button" class="paiement">Paiement</button>
 
 </div>
-
-<div class="paie">
-  <h2>Mode de paiement</h2>
-  <p>Toutes les transactions sont sécurisées et cryptées</p>
-  <p>Vous devez régler la somme de <span class="montantPaie">{{total|number_format(2)}} €</span></p>
-  
-  <div class="modePaie">
-    <img src="/img/img221.png" atl="logo paiements">
-  </div>
-  
-  <form method="POST">
-    <div class="input-group input-group-sm mb-3">
-      <input type="text" name="titulaire" placeholder="Nom du titulaire" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"><label>
-    </div>
-
-    <div class="input-group input-group-sm mb-3">
-      <input type="text" name="numeros" placeholder="Numéros de la carte" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"><label>
-        <i class="fas fa-credit-card"></i></label>
-    </div>
-
-    <div class="input-group input-group-sm mb-3">
-      <input type="text" name="expiration" placeholder="MM/AA" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-      <input name="cvv" placeholder="CVV" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-      <label>
-        <i class="fas fa-question-circle"></i>
-      </label>
+<div class="backPaie">
+  <div class="paie">
+    <h2>Mode de paiement</h2>
+    <p>Toutes les transactions sont sécurisées et cryptées</p>
+    <p>Vous devez régler la somme de <span class="montantPaie">{{total|number_format(2)}} €</span></p>
+    
+    <div class="modePaie">
+      <img src="/img/img221.png" atl="logo paiements">
     </div>
     
-  </form>
-</div>
+    <form method="POST">
+      <div class="input-group input-group-sm mb-3">
+        <input type="text" name="titulaire" placeholder="Nom du titulaire" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"><label>
+      </div>
 
-{% if is_granted("IS_AUTHENTICATED_FULLY") %}
-  <div class="validerPanier">
-    <a href="{{ path('commande_paiement', {id:app.user.id, montant:total}) }}">Valider</a>
+      <div class="input-group input-group-sm mb-3">
+        <input type="text" name="numeros" placeholder="Numéros de la carte" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"><label>
+          <i class="fas fa-credit-card"></i></label>
+      </div>
+
+      <div class="input-group input-group-sm mb-3">
+        <input type="text" name="expiration" placeholder="MM/AA" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <input name="cvv" placeholder="CVV" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <label>
+          <i class="fas fa-question-circle"></i>
+        </label>
+      </div>
+      
+    </form>
   </div>
-{% endif %}
+  {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    <div class="validerPanier">
+      <a href="{{ path('commande_paiement', {id:app.user.id, montant:total}) }}">Valider</a>
+    </div>
+  {% endif %}
+</div>
 {% endblock %}

@@ -241,6 +241,7 @@ footer{
     border: 1px solid;
     background: #acd7bd;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px
 }
 
 .paie input {
@@ -267,4 +268,28 @@ footer{
     position: absolute;
     left: 300px;
     bottom: 50px;
+    margin: 15px
+}
+
+.backPaie{
+    background: white;
+    padding: 15px;
+}
+
+.validerPanier{
+    background-color: rgb(199, 199, 199);
+    margin-left: 15px;
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 60px;
+    color:black;
+}
+
+.validerPanier a{
+    text-decoration: none;
+    color:black;
+}
+
+.validerPanier:hover{
+    background-color: rgb(167, 165, 165);
 }
